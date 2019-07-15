@@ -11,8 +11,9 @@
   end
 
   def update
-    if @movie.save
-      redirect_to movie_path(@movie)
+    if @movie.update(movie_params)
+      flash[:notice] = "Successfully Updated Movie"
+      redirect_to root_path
     else
       render :new
     end
@@ -26,8 +27,10 @@
   end
 
   def create
+    @movie = Movie.new(movie_params)
     if @movie.save
-      redirect_to movie_path(@movie)
+      flash[:notice] = "Successfully Created Movie"
+      redirect_to root_path
     else
       render :new
     end
@@ -35,6 +38,7 @@
 
   def destroy
      @movie.destroy
+     flash[:alert] = "Movie Deleted!"
      redirect_to root_url
   end
 

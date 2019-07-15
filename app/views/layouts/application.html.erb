@@ -18,6 +18,11 @@
   </head>
 
   <body>
-    <%= yield %>
+   <% if notice %>
+     <p class="alert alert-success"><%= notice %></p>
+    <%elsif alert%>
+      <p class ="alert alert-danger"><%= alert%>
+   <% end %>
+   <%= yield %>
   </body>
 </html>

@@ -7,10 +7,11 @@
   padding: 68px;
   padding-left: 0px;
 }
+
 img {
     vertical-align: middle;
     border-style: none;
-    width: 376px;
+    max-width: 37px;
     padding-top: 22px;
 }
 .big{
@@ -39,3 +40,8 @@ img {
     border-style: none;
     width: 378px;
 }
+
+.div_img {
+  width:1px;
+}
+
