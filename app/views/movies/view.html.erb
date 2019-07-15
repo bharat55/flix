@@ -1,0 +1,20 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <link rel="shortcut icon" href="download.ico" />
+
+   <title> <link rel="shortcut icon" href="download.ico" />
+</title>
+    <link rel="shortcut icon" href="download.ico" />
+
+ </head>
+ <body class ="view_page">
+ <h1><%=@movie.title%></h1>
+    <p><%=@movie.description%></p>
+    <p><strong>released on : </strong><%=@movie.released_on%>(<%=time_ago_in_words(@movie.released_on) %>)</p>
+    <p><strong>rating :</strong><%=@movie.rating%></p>
+    <p><strong>Total gross :</strong><%=format_total_gross(@movie)%></p>
+
+    <%= link_to "Back" ,movies_path%>
+
+ </html>

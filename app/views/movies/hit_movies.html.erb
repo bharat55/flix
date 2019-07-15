@@ -1,0 +1,12 @@
+<div class "header">
+  <h1>Hit Movies!!!</h1>
+  <h4>The movies which having rating greater than 5 are considered to be hit movies,are all shown here</h4>
+</div>
+
+<%@movies.each do |movie|%>
+    <h1><%=movie.title%></h1>
+    <p><%=movie.description.truncate(20)%></p>
+    <p><strong>released on : </strong><%=movie.released_on%>(<%=time_ago_in_words(movie.released_on) %>)</p>
+    <p><strong>rating :</strong><%=movie.rating%></p>
+    <p><strong>Total gross :</strong><%=format_total_gross(movie)%></p>
+<%end%>
