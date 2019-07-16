@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -7,7 +8,10 @@ Rails.application.routes.draw do
 
   # get "movies/new" => "movies#new"
   get "movies/:id/remove" => "movies#destroy", as: :movies_distroy
-  resources :movies
+  resources :movies do
+    resources :reviews
+  end
+
   # post "movies" => "movies#create"
   # get "movies" => "movies#index"
   # get "movies/:id" =>"movies#view"

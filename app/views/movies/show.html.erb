@@ -18,6 +18,7 @@
         <p><strong>Duration :</strong><%=@movie.duration%></p>
         <button><%= link_to "Back" ,movies_path%></button>
         <button><%= link_to "Edit" ,edit_movie_path(@movie)%></button>
+         <button><%= link_to "Write Review" ,new_movie_review_path(@movie)%></button>
       </div>
 </div>
 </body>

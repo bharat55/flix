@@ -1,0 +1,27 @@
+class ReviewsController < ApplicationController
+  before_action :find_movie
+  def index
+    @reviews = @movie.reviews
+  end
+  def new
+    @reviews = @movie.reviews.new
+  end
+  def create
+    @reviews = @movie.reviews.create(review_params)
+    if @reviews.save
+      flash[:notice] = "Thanks #{@reviews.name} for Review"
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  private
+  def find_movie
+    @movie = Movie.find(params[:movie_id])
+  end
+  def review_params
+   params.require(:review).permit(:name,:stars,:comment)
+  end
+
+end

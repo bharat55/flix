@@ -23,12 +23,10 @@
         <p><strong>cast :</strong><%=movie.cast%></p>
         <p><strong>Directed by :</strong><%=movie.director%></p>
         <p><strong>Duration :</strong><%=movie.duration%></p>
-
         <nav>
           <button><%=link_to "Go the #{movie.title}" ,movie%></button>&nbsp&nbsp&nbsp
-          <button><%=link_to "Edit",edit_movie_path(movie)%></button>&nbsp&nbsp&nbsp
-          <button><%=link_to "Delete" , movies_distroy_path(movie.id),data: { confirm: 'Are you sure?' }
-      %></button>
+          <button><%=link_to "Delete" , movies_distroy_path(movie.id),data: { confirm: 'Are you sure?' }%></button>&nbsp&nbsp&nbsp
+          <button><%=link_to "check Reviews", movie_reviews_path(movie)%></button>
       </nav>
    </div>
   </div>

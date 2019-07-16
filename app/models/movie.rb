@@ -1,7 +1,8 @@
 class Movie < ApplicationRecord
+  has_many :reviews, dependent: :destroy
   RATINGS=%w(G PG PG-13 R NC-17)
   validates :image_file_name, allow_blank: true, format: {
-    with: /\w+\.(gif|jpg|png)\z/i,
+    with: /\w+\.(gif|jpg|png|jpeg)\z/i,
     message: "must reference a GIF, JPG, or PNG image"
   }
    validates :title, presence: true

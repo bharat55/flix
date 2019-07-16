@@ -38,3 +38,45 @@
   margin-top: 60px;
 }
 
+.view_page{
+  background-color: lightblue ;
+}
+
+.center{
+  margin: auto;
+  padding: 68px;
+  padding-left: 0px;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 371px !important;
+    padding-top: 22px;
+}
+.big{
+  font-size: 6.5rem;
+}
+
+.small, small {
+    font-size: 180%;
+    font-weight: 400;
+}
+.col-sm-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+    padding-top: 62px;
+    padding-left: 52px;
+}
+.header{
+  position:sticky;
+  top:0px;
+}
+
+
+.col-sm-4 img {
+    vertical-align: middle;
+    border-style: none;
+    width: 378px;
+}

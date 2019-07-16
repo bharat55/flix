@@ -13,7 +13,7 @@
   def update
     if @movie.update(movie_params)
       flash[:notice] = "Successfully Updated Movie"
-      redirect_to root_path
+      redirect_to @movie
     else
       render :new
     end
