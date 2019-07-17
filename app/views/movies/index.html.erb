@@ -3,7 +3,6 @@
 <div class="header">
   <a href="#default" class="logo"><%=pluralize(@movies.length,'Movie')%></a>
   <div class="header-right">
-    <%=link_to "Show Hit Movies",hit_movies_path,class: "active"%>&nbsp&nbsp
     <%=link_to "Add Movie" ,new_movie_path,class: "active" %>
     <%=link_to "Home" ,root_path,class: "active" %>
 
@@ -15,11 +14,11 @@
 <%@movies.each do |movie|%>
   <div>
         <div class="col-sm-4" >
-        <h1><%=movie.title%></h1>
+        <h1><%=movie.title%> <strong class = "star"><%=average_stars(movie)%></strong></h1>
         <p><%=movie.description.truncate(20)%></p>
         <p><strong>released on : </strong><%=movie.released_on%>(<%=time_ago_in_words(movie.released_on) %>)</p>
         <p><strong>rating :</strong><%=movie.rating%></p>
-        <p><strong>Total gross :</strong><%=format_total_gross(movie)%></p>
+        <p><strong>Total gross :</strong><%=movie.total_gross%></p>
         <p><strong>cast :</strong><%=movie.cast%></p>
         <p><strong>Directed by :</strong><%=movie.director%></p>
         <p><strong>Duration :</strong><%=movie.duration%></p>

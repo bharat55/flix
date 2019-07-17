@@ -9,7 +9,7 @@
  <div class = "col-sm-8 ">
    <h1 class="big"><%=@movie.title%></h1>
       <div class="small">
-        <p><%=@movie.description%></p>
+        <p class = "description"><%=@movie.description%></p>
         <p><strong>released on : </strong><%=@movie.released_on%>(<%=time_ago_in_words(@movie.released_on) %>)</p>
         <p><strong>rating :</strong><%=@movie.rating%></p>
         <p><strong>Total gross :</strong><%=format_total_gross(@movie)%></p>

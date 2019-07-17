@@ -15,6 +15,16 @@ module MoviesHelper
       image_tag(movie.image_file_name)
     end
   end
+  def average_stars(movie)
+    avg = movie.reviews.average(:stars).to_i
+    stars = ""
+    avg.times do
+       stars +="*"
+    end
+     stars
+  end
+
+
 end
 
 
