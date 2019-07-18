@@ -1,7 +1,12 @@
 <h1>Reviews For <%= @movie.title%></h1>
+<table class="table table-striped">
   <%@reviews.each do |review|%>
-
-    <h3><%=pluralize(review.stars,"Star")%> by <%=review.name%>:"<%=review.comment%>"</h3>
-
+     <thead>
+       <tr>
+          <th><%=pluralize(review.stars,"Star")%> by <%=review.name%>:"<%=review.comment%>"</th>
+          <th><%=link_to "Edit",edit_movie_review_path(@movie, review)%></th>
+          <th><%=link_to "Delete"%></th>
+        </tr>
+      </thead>
   <%end%>
 

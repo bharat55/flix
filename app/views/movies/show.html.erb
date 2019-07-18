@@ -1,25 +1,48 @@
-
-
-
-
-<div class = "col-sm-4 " >
-  <%= image_for(@movie)%>
- </div>
-
- <div class = "col-sm-8 ">
-   <h1 class="big"><%=@movie.title%></h1>
-      <div class="small">
-        <p class = "description"><%=@movie.description%></p>
-        <p><strong>released on : </strong><%=@movie.released_on%>(<%=time_ago_in_words(@movie.released_on) %>)</p>
-        <p><strong>rating :</strong><%=@movie.rating%></p>
-        <p><strong>Total gross :</strong><%=format_total_gross(@movie)%></p>
-        <p><strong>cast :</strong><%=@movie.cast%></p>
-        <p><strong>Directed by :</strong><%=@movie.director%></p>
-        <p><strong>Duration :</strong><%=@movie.duration%></p>
-        <button><%= link_to "Back" ,movies_path%></button>
-        <button><%= link_to "Edit" ,edit_movie_path(@movie)%></button>
-         <button><%= link_to "Write Review" ,new_movie_review_path(@movie)%></button>
-      </div>
+<%- model_class = Movie -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-</body>
 
+<div class="container">
+  <div class="row">
+  <div class ="col-sm-4">
+     <%= image_for(@movie)%>
+  </div>
+    <div class="col-sm-8">
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+        <dd><%= @movie.title %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:rating) %>:</strong></dt>
+        <dd><%= @movie.rating %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:total_gross) %>:</strong></dt>
+        <dd><%= @movie.total_gross %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @movie.description %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:released_on) %>:</strong></dt>
+        <dd><%= @movie.released_on %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:cast) %>:</strong></dt>
+        <dd><%= @movie.cast %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:director) %>:</strong></dt>
+        <dd><%= @movie.director %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
+        <dd><%= @movie.duration %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:image_file_name) %>:</strong></dt>
+        <dd><%= @movie.image_file_name %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:string) %>:</strong></dt>
+        <dd><%= @movie.string %></dd>
+      </dl>
+
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    movies_path, :class => 'btn btn-default'  %>
+      <%= link_to "write Reviews", new_movie_review_path(@movie),class:"btn btn-default"%>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_movie_path(@movie), :class => 'btn btn-default' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    movie_path(@movie),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-danger' %>
+
+     </div>
+  </div>
+</div>

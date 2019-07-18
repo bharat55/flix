@@ -1,0 +1,18 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
+
+img {
+
+    width: 229px;
+    /* margin-bottom: 27px; */
+    margin-top: -15px;
+}
+.footer{
+  background-color: grey;
+  margin-top: 50px;
+  width:1px;
+}
