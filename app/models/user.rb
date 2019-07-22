@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
               format:{:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
               uniqueness: true
-
-
+  validates :username, presence: true, format:{:with => /\A[a-zA-Z0-9]+\Z/ },
+              uniqueness: true
 
 end

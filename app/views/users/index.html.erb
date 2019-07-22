@@ -13,20 +13,43 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-
+    <%unless current_user_superAdmin?(user)%>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
+
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       user_path(user), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_path(user),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+          <%if current_user?(user)%>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_user_path(user), :class => 'btn btn-default btn-xs' %>
+           <%end%>
+
+          <%if current_user_admin? || current_user?(user) || super_admin? %>
+            <%unless current_user_superAdmin?(user)%>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          user_path(user),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-xs btn-danger' %>
+            <%end%>
+
+          <%end%>
+
+
+          <%if super_admin?%>
+            <%if user.admin?%>
+              <%= link_to t('.Dismiss as Admin', :default => t("helpers.links.Dismiss as Admin")),
+                      admin_dismiss_path(user), :class => 'btn btn-warning btn-xs' %>
+            <%else%>
+                <%= link_to t('.Make Admin', :default => t("helpers.links.Make Admin")),
+                      admin_user_path(user), :class => 'btn btn-success btn-xs' %>
+            <%end%>
+
+          <%end%>
+
         </td>
+      <%end%>
       </tr>
     <% end %>
   </tbody>
