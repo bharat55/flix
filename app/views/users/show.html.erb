@@ -16,7 +16,25 @@
         <dd><%= @user.email %></dd>
         <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
         <dd><%= @user.username %></dd>
-
+        <dt><strong><%= model_class.human_attribute_name(:favorite_movies) %>:</strong></dt>
+        <% @fav_movies.each do |fmovie|%>
+          <ul>
+           <dd>
+             <li><%=link_to fmovie.title,movie_path(fmovie)%></li>
+           </dd>
+          </ul>
+        <%end%>
+        <h5>Reviews</h5>
+        <%@reviews.each do |review|%>
+          <dt><strong><%= model_class.human_attribute_name(:Movie) %>:</strong></dt>
+          <dd><%= review.movie.title %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:Stars) %>:</strong></dt>
+          <dd><%= review.stars %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:Reviewed_on) %>:</strong></dt>
+          <dd><%= time_ago_in_words(review.created_at) %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:Comment) %>:</strong></dt>
+          <dd><%= review.comment %></dd>
+        <%end%>
       </dl>
 
       <%= link_to t('.back', :default => t("helpers.links.back")),

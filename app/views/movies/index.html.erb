@@ -12,6 +12,7 @@
       <th><%= model_class.human_attribute_name(:cast) %></th>
       <th><%= model_class.human_attribute_name(:director) %></th>
       <th><%= model_class.human_attribute_name(:Reviews) %></th>
+        <th><%= model_class.human_attribute_name(:WriteReviews) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= movie.cast %></td>
         <td><%= movie.director %></td>
         <td><%=link_to "Reviews",movie_reviews_path(movie)%>
+        <td><%=link_to "WriteReviews",new_movie_review_path(movie)%>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       movie_path(movie), :class => 'btn btn-default btn-xs' %>

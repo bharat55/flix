@@ -3,7 +3,7 @@
   <%@reviews.each do |review|%>
      <thead>
        <tr>
-          <th><%=pluralize(review.stars,"Star")%> by <%=review.name%>:"<%=review.comment%>"</th>
+          <th><%=pluralize(review.stars,"Star")%> by <%=review.user.name%>:"<%=review.comment%>"</th>
           <th><%=link_to "Edit",edit_movie_review_path(@movie, review)%></th>
           <th><%=link_to "Delete"%></th>
         </tr>

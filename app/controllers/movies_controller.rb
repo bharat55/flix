@@ -6,6 +6,7 @@
   end
 
   def show
+    @fans = @movie.fans
   end
 
   def edit

@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :fans, through: :favorites, source: :user
   RATINGS=%w( PG PG-13 R NC-17)
   validates :image_file_name, allow_blank: true, format: {
     with: /\w+\.(gif|jpg|png|jpeg)\z/i,

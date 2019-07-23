@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @fav_movies = @user.fav_movies
+    @reviews = @user.reviews
   end
 
   def edit

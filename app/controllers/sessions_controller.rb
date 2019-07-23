@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :users_page,only:[:new]
+  before_action :user_logged_in?,only:[:new]
 
   def new
 
@@ -26,4 +26,14 @@ class SessionsController < ApplicationController
     flash[:notice] = "loged out successfully"
     redirect_to new_sessions_path
   end
+
+  private
+  def user_logged_in?
+     if current_user
+       redirect_to user_path(current_user)
+     else
+      render :new
+    end
+  end
+
 end

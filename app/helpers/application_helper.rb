@@ -5,4 +5,7 @@ module ApplicationHelper
   def redirect_to_user(user)
     redirect_to_user
   end
+  def movie_added_to_fav?(movie)
+    current_user.favorites.map(&:movie_id).include?(movie.id) if current_user
+  end
 end
