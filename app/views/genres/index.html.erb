@@ -1,0 +1,13 @@
+<h1>Genres</h1>
+<table class="table table-striped">
+  <%@genres.each do |genre|%>
+     <thead>
+       <tr>
+          <th><%=genre.name%></th>
+          <th><%=link_to "Edit",edit_genre_path(genre)%></th>
+          <th><%=link_to "Delete",genre_path(genre),method: :delete%></th>
+        </tr>
+      </thead>
+  <%end%>
+</table>
+

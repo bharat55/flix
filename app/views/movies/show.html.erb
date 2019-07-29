@@ -1,3 +1,6 @@
+<%content_for :title do%>
+  <%=@movie.title%>
+<%end%>
 <%- model_class = Movie -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
@@ -7,8 +10,9 @@
   <div class="row">
   <div class ="col-sm-4">
     <%= image_for(@movie)%>
-    <%if movie_added_to_fav?(@movie)%>
+
     <%if current_user%>
+      <%if movie_added_to_fav?(@movie)%>
        <div class ="Unfav">
         <%= link_to "Unfave", movie_favorite_path(@movie),class:"btn btn-default btn-danger",method: :delete%>
        </div>
@@ -16,6 +20,8 @@
          <%= button_to "Fave", movie_favorites_path(@movie),class:"btn btn-default btn-success"%>
       <%end%>
     <%end%>
+
+
   </div>
     <div class="col-sm-8">
       <dl class="dl-horizontal">
@@ -36,13 +42,24 @@
         <dd><%= @movie.director %></dd>
         <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
         <dd><%= @movie.duration %></dd>
-        <dt><strong><%= model_class.human_attribute_name(:Total_Fans) %>:</strong></dt>
-        <dd><%=@fans.count%>
-       <ul>
-          <%@fans.each do |fan|%>
-            <li><%=link_to fan.name, user_path(fan)%></li>
-          <%end%>
-       </ul>
+
+        <%content_for :sidebar do %>
+         <dt><strong><%= model_class.human_attribute_name(:Genres) %>:</strong></dt>
+          <dd>
+            <%@genres.each do |genre|%>
+               <%= "#{genre.name} ," %>
+            <%end%>
+          </dd>
+        <%end%>
+      <%content_for :sidebar do %>
+      <strong><%= model_class.human_attribute_name(:Total_Fans) %>:  </strong><%=@fans.count%>
+           <ul>
+              <%@fans.each do |fan|%>
+                <li><%=link_to fan.name, user_path(fan)%></li>
+              <%end%>
+           </ul>
+
+      <%end%>
        </dd>
 
       <%= link_to t('.back', :default => t("helpers.links.back")),

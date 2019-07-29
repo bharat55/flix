@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
 
 
   def create
-    unless Favorite.all.map(&:id).include?(current_user.id)
+    unless Favorite.all.map(&:user_id).include?(current_user.id)
        @favorite =  Favorite.new
        @favorite.movie = @movie
        @favorite.user = current_user

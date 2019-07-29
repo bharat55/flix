@@ -22,9 +22,12 @@
   </head>
   <body>
 
-          <%=render "shared/header"%>
+        <%=render "shared/header"%>
+
+        <div class="col-lg-9">
           <%= yield %>
         </div>
+         <%=render "shared/sidebar"%>
       </div>
     </div><!--/span-->
         <!--/row-->

@@ -1,3 +1,6 @@
+<%content_for :title do%>
+  <%=@user.name%>
+<%end%>
 <%- model_class = User -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
@@ -10,32 +13,37 @@
   </div> -->
     <div class="col-sm-8">
       <dl class="dl-horizontal">
-        <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+        <dt><strong><%= model_class.human_attribute_name(:name) %> :</strong></dt>
         <dd><%= @user.name %></dd>
         <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
         <dd><%= @user.email %></dd>
         <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
         <dd><%= @user.username %></dd>
-        <dt><strong><%= model_class.human_attribute_name(:favorite_movies) %>:</strong></dt>
-        <% @fav_movies.each do |fmovie|%>
-          <ul>
-           <dd>
-             <li><%=link_to fmovie.title,movie_path(fmovie)%></li>
-           </dd>
-          </ul>
-        <%end%>
-        <h5>Reviews</h5>
-        <%@reviews.each do |review|%>
-          <dt><strong><%= model_class.human_attribute_name(:Movie) %>:</strong></dt>
-          <dd><%= review.movie.title %></dd>
-          <dt><strong><%= model_class.human_attribute_name(:Stars) %>:</strong></dt>
-          <dd><%= review.stars %></dd>
-          <dt><strong><%= model_class.human_attribute_name(:Reviewed_on) %>:</strong></dt>
-          <dd><%= time_ago_in_words(review.created_at) %></dd>
-          <dt><strong><%= model_class.human_attribute_name(:Comment) %>:</strong></dt>
-          <dd><%= review.comment %></dd>
-        <%end%>
       </dl>
+      <%content_for :sidebar do%>
+       <p><strong><%= model_class.human_attribute_name(:favorite_movies) %> :- </strong></p>
+          <ul>
+             <%@fav_movies.each do |fmovie|%>
+             <li><%=link_to fmovie.title,movie_path(fmovie)%></li>
+            <%end%>
+          </ul>
+      <%end%>
+
+
+      <%content_for :sidebar do%>
+        <p><strong>Reviews :-</strong></p>
+        <%@reviews.each do |review|%>
+           <p><strong><%= model_class.human_attribute_name(:Movie) %>:</strong>   <%= review.movie.title %></p>
+
+           <p><strong><%= model_class.human_attribute_name(:Stars) %>:</strong>
+  <%= review.stars %></p>
+           <p><strong><%= model_class.human_attribute_name(:Reviewed_on) %>:</strong>   <%= time_ago_in_words(review.created_at) %></p>
+
+          <p><strong><%= model_class.human_attribute_name(:Comment) %>:</strong>   <%= review.comment %></p>
+
+        <%end%>
+      <%end%>
+
 
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     root_path, :class => 'btn btn-default'  %>

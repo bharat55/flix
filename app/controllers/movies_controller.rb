@@ -2,12 +2,24 @@
   before_action :find_movie, only:[:show,:edit,:update,:destroy]
   before_action :required_admin, except:[:show,:index]
   def index
-    @movies = Movie.all
+    case params[:scope]
+    when "hits"
+      @movies = Movie.hits
+    when "flops"
+      @movies = Movie.flops
+    else
+      @movies  = Movie.all
+    end
   end
+
+
 
   def show
     @fans = @movie.fans
+    @genres = @movie.genres
   end
+
+
 
   def edit
   end
@@ -51,6 +63,6 @@
   end
 
   def movie_params
-    params.require(:movie).permit(:title,:rating,:total_gross,:description,:released_on,:cast,:director,:duration,:image_file_name)
+    params.require(:movie).permit(:title,:rating,:total_gross,:description,:released_on,:cast,:director,:duration,:image_file_name,genre_ids: [])
   end
 end

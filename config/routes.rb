@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
 
-
+  get "movies/filter/:scope" => "movies#index", as: :filtered_movies
+  resources :genres
   resource :sessions,only:[:new,:create,:destroy]
 
   get "users/sign_up" => "users#new", as: :sign_up
